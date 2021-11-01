@@ -1,16 +1,28 @@
-import React from 'react'
-import "./Home.css"
+import React from "react";
+import Products from "../../components/Products/Products";
+import "./Home.css";
+import data from "../../Data";
 
-const Home = () => {
-    return (
-        <div className="home">
-            <div className="home__container">
-                <div className="home__row"></div>
-                <div className="home__row"></div>
-                <div className="home__row"></div>
-            </div>
-        </div>
-    )
+function createCard(data) {
+  return (
+    <Products
+      name={
+        data.name.length > 100
+          ? data.name.substring(0, 100) + " ..."
+          : data.name
+      }
+      imageURL={data.imageURL}
+      price={data.price}
+    />
+  );
 }
 
-export default Home
+const Home = () => {
+  return (
+    <div className="container">
+      <div className="card">{data.map(createCard)}</div>
+    </div>
+  );
+};
+
+export default Home;
